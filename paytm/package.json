@@ -17,5 +17,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/paytm/Paytm_Node_Checksum"
+  },
+
+  
+  "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "1.0.10"
   }
 }
