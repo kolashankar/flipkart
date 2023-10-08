@@ -7,6 +7,9 @@ import { v4 as uuid } from 'uuid';
 import Connection from './database/db.js';
 import DefaultData from './default.js';
 import Router from './routes/route.js';
+import path from 'path';
+
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -27,9 +30,27 @@ const URL = process.env.MONGODB_URI || `mongodb://${USERNAME}:${PASSWORD}@ac-aha
 
 Connection(URL);
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'))
-}
+//if (process.env.NODE_ENV === 'production') {
+ //   app.use(express.static('client/build'))
+//}
+// app.use(express.static(path.join("__dirname", "./client/build")));
+// app.get('*', function (_, res)) {
+//      res.sendfile(path.join(__dirname, "./client/build/index.html"), function(err){
+//          res.status(500).send(err);
+//})
+//})
+
+// Serve static files from the specified directory
+app.use(express.static(path.join(__dirname, './client/build')));
+
+// Handle all other routes by serving the index.html
+app.get('*', function (_, res) {
+  res.sendFile(path.join(__dirname, './client/build/index.html'), function (err) {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
 
 app.listen(PORT, () => console.log(`Server is running successfully on PORT ${PORT}`));
 

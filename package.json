@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client-install": "cd client && npm install",
     "client-build": "cd client && npm run build",
-    "heroku-postbuild": "npm run client-install && npm run client-build" 
+    "heroku-postbuild": "npm run client-install && npm run client-build"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +21,11 @@
     "https": "^1.0.0",
     "mongodb": "^6.1.0",
     "mongoose": "^7.5.3",
-    "nodemon": "^3.0.1",
+    "path": "^0.12.7",
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "@babel/plugin-proposal-private-property-in-object": "^1.0.10"
   }
 }
